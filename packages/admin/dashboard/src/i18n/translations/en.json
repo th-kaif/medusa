@@ -2832,6 +2832,7 @@
     "collection": "Collection",
     "discountable": "Discountable",
     "handle": "Handle",
+    "brand": "Brand",
     "subtitle": "Subtitle",
     "by": "By",
     "item": "Item",

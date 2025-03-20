@@ -68,6 +68,25 @@ export const ProductCreateGeneralSection = ({
               )
             }}
           />
+          <Form.Field
+            control={form.control}
+            name="brand"
+            render={({ field }) => {
+              return (
+                <Form.Item>
+                  <Form.Label
+                    tooltip={t("products.fields.brand.tooltip")}
+                    optional
+                  >
+                    {t("products.fields.brand.label")}
+                  </Form.Label>
+                  <Form.Control>
+                    <Input {...field} placeholder="Enter Brand" />
+                  </Form.Control>
+                </Form.Item>
+              )
+            }}
+          />
         </div>
       </div>
       <Form.Field

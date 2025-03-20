@@ -3,6 +3,8 @@ import { Filter } from "../../../components/table/data-table"
 import { useProductTags } from "../../api"
 import { useProductTypes } from "../../api/product-types"
 import { useSalesChannels } from "../../api/sales-channels"
+import { useProducts } from "../../api/products"
+import { useMemo } from "react"
 
 const excludeableFields = [
   "sales_channel_id",
@@ -10,6 +12,7 @@ const excludeableFields = [
   "categories",
   "product_types",
   "product_tags",
+  "brand",
 ] as const
 
 export const useProductTableFilters = (
@@ -204,6 +207,39 @@ export const useProductTableFilters = (
   }))
 
   filters = [...filters, statusFilter, ...dateFilters]
+
+  const isBrandExcluded = exclude?.includes("brand")
+
+  const { products } = useProducts(
+    {
+      limit: 1000,
+      offset: 0,
+      fields: "brand",
+    },
+    {
+      enabled: !isBrandExcluded,
+    }
+  )
+
+  // Extend filters with brand filter
+  const uniqueBrands = useMemo(() => {
+    return products?.map((p) => p.brand).filter(Boolean)
+  }, [products])
+
+  if (uniqueBrands && !isBrandExcluded) {
+    const brandFilter: Filter = {
+      key: "brand",
+      label: t("fields.brand"),
+      type: "select",
+      multiple: false,
+      options: uniqueBrands.map((b) => ({
+        label: b,
+        value: b,
+      })),
+    }
+
+    filters = [...filters, brandFilter]
+  }
 
   return filters
 }
