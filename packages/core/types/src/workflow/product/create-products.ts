@@ -64,6 +64,7 @@ export interface CreateProductInputDTO {
   subtitle?: string
   description?: string
   is_giftcard?: boolean
+  brand?: string
   discountable?: boolean
   images?: string[]
   thumbnail?: string

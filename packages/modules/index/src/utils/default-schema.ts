@@ -9,6 +9,7 @@ export const defaultSchema = `
     type_id: String
     collection_id: String
     is_giftcard: String
+    brand: String
     external_id: String
     created_at: DateTime
     updated_at: DateTime

@@ -1,6 +1,6 @@
 import { FilterableProductProps, OperatorMap } from "@medusajs/framework/types"
 import { isPresent, ProductStatus } from "@medusajs/framework/utils"
-import { z } from "zod"
+import { z, RefinementCtx } from "zod"
 import { createOperatorMap } from "../../validators"
 import { booleanString } from "../common"
 
@@ -12,6 +12,7 @@ export const StoreGetProductParamsDirectFields = z.object({
   title: z.union([z.string(), z.array(z.string())]).optional(),
   handle: z.union([z.string(), z.array(z.string())]).optional(),
   is_giftcard: booleanString().optional(),
+  brand: z.union([z.string(), z.array(z.string())]).optional(),
   category_id: z.union([z.string(), z.array(z.string())]).optional(),
   external_id: z.union([z.string(), z.array(z.string())]).optional(),
   collection_id: z.union([z.string(), z.array(z.string())]).optional(),
@@ -34,7 +35,8 @@ type HttpProductFilters = FilterableProductProps & {
 }
 
 export const transformProductParams = (
-  data: HttpProductFilters
+  data: any,
+  _?: RefinementCtx
 ): FilterableProductProps => {
   const res: HttpProductFilters = {
     ...data,
@@ -48,6 +50,11 @@ export const transformProductParams = (
   if (isPresent(data.category_id)) {
     res.categories = { id: data.category_id as OperatorMap<string> }
     delete res.category_id
+  }
+
+  // Convert brand to string if it's an array
+  if (Array.isArray(res.brand)) {
+    res.brand = res.brand[0] || ""
   }
 
   return res as FilterableProductProps

@@ -174,6 +174,10 @@ export interface AdminCreateProduct {
    */
   is_giftcard?: boolean
   /**
+   * The product's brand.
+   */
+  brand?: string
+  /**
    * Whether discounts can be applied on the product.
    */
   discountable?: boolean
@@ -392,6 +396,10 @@ export interface AdminUpdateProduct {
    * Whether the product is a gift card.
    */
   is_giftcard?: boolean
+  /**
+   * The product's brand.
+   */
+  brand?: string
   /**
    * Whether discounts can be applied on the product.
    */

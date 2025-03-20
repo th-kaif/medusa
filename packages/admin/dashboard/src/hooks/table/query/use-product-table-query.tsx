@@ -27,6 +27,7 @@ export const useProductTableQuery = ({
       "tag_id",
       "type_id",
       "status",
+      "brand",
       "id",
     ],
     prefix
@@ -43,6 +44,7 @@ export const useProductTableQuery = ({
     type_id,
     is_giftcard,
     status,
+    brand,
     order,
     q,
   } = queryObject
@@ -58,6 +60,7 @@ export const useProductTableQuery = ({
     is_giftcard: is_giftcard ? is_giftcard === "true" : undefined,
     order: order,
     tag_id: tag_id ? tag_id.split(",") : undefined,
+    brand: brand ? brand.split(",") : undefined,
     type_id: type_id?.split(","),
     status: status?.split(",") as HttpTypes.AdminProductStatus[],
     q,

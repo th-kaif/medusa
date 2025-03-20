@@ -38,6 +38,10 @@ export interface ProductDTO {
    */
   is_giftcard: boolean
   /**
+   * The brand of the product.
+   */
+  brand: string
+  /**
    * The status of the product.
    */
   status: ProductStatus
@@ -713,6 +717,10 @@ export interface FilterableProductProps
    * Filters only or excluding gift card products
    */
   is_giftcard?: boolean
+  /**
+   * The brand of the product.
+   */
+  brand?: string
   /**
    * Filters on a product's tags.
    */
@@ -1472,6 +1480,10 @@ export interface CreateProductDTO {
    */
   is_giftcard?: boolean
   /**
+   * The brand of the product.
+   */
+  brand?: string
+  /**
    * Whether the product can be discounted.
    */
   discountable?: boolean
@@ -1591,6 +1603,10 @@ export interface UpdateProductDTO {
    * Whether the product is a gift card.
    */
   is_giftcard?: boolean
+  /**
+   * The brand of the product.
+   */
+  brand?: string
   /**
    * Whether the product can be discounted.
    */

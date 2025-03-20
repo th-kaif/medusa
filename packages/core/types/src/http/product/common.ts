@@ -33,6 +33,10 @@ export interface BaseProduct {
    */
   is_giftcard: boolean
   /**
+   * The product's brand.
+   */
+  brand: string
+  /**
    * The product's status.
    */
   status: ProductStatus
@@ -378,6 +382,10 @@ export interface BaseProductListParams
    * Filter by whether the product is a gift card.
    */
   is_giftcard?: boolean
+  /**
+   * Filter by the product's brand.
+   */
+  brand?: string
   /**
    * Filter by the product's tag(s).
    */

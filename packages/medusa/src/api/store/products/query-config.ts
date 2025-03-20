@@ -5,6 +5,7 @@ export const defaultStoreProductFields = [
   "description",
   "handle",
   "is_giftcard",
+  "brand",
   "discountable",
   "thumbnail",
   "collection_id",
