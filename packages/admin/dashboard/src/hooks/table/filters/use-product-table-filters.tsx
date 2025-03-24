@@ -223,7 +223,9 @@ export const useProductTableFilters = (
 
   // Extend filters with brand filter
   const uniqueBrands = useMemo(() => {
-    return products?.map((p) => p.brand).filter(Boolean)
+    if (!products) return []
+    const brandSet = new Set(products.map((p) => p.brand).filter(Boolean))
+    return Array.from(brandSet)
   }, [products])
 
   if (uniqueBrands && !isBrandExcluded) {
